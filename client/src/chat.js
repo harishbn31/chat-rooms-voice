@@ -14,7 +14,7 @@ class Chat extends React.Component{
             room: this.props.match.params.names.split('-')[0]
         };
 
-        this.socket = io(`${window.location.hostname}`);
+        this.socket = io();
         this.socket.emit('joinRoom', this.state.room)
         this.socket.on('message',message =>{
             if(message){
