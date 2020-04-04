@@ -2,9 +2,6 @@ const socketio = require('socket.io');
 const express = require("express")
 const cors = require("cors")
 const path = require('path')
-
-const { routes } = require("./config/routes")
-
 const app = express()
 const port = process.env.PORT || 3005
 console.log('port', process.env.PORT)
@@ -34,9 +31,9 @@ io.on('connection', (socket) => {
     //     io.emit('message','user left the room')
     // })
 })
-app.use(express.static(path.join(__dirname, 'chat-box/build')))
+app.use(express.static(path.join(__dirname, 'client/build')))
 app.get('*', (req,res) =>{
-    res.sendFile(path.join(__dirname+'/chat-box/build/index.html'))
+    res.sendFile(path.join(__dirname+'/client/build/index.html'))
 })
    
 
