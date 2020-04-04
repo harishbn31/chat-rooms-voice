@@ -1,6 +1,6 @@
 import React from "react";
-// import axios from 'axios'
 import io from "socket.io-client";
+
 
 class Chat extends React.Component{
     constructor(props){
@@ -14,7 +14,8 @@ class Chat extends React.Component{
             room: this.props.match.params.names.split('-')[0]
         };
 
-        this.socket = io('/');
+        const ws = new window.WebSocket('ws://' + window.location.host) || {}
+        this.socket = io(ws);
         this.socket.emit('joinRoom', this.state.room)
         this.socket.on('message',message =>{
             if(message){
