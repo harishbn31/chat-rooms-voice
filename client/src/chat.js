@@ -14,8 +14,8 @@ class Chat extends React.Component{
             room: this.props.match.params.names.split('-')[0]
         };
 
-        const ws = new window.WebSocket('ws://' + window.location.host) || {}
-        this.socket = io(ws);
+        // const ws = new window.WebSocket('ws://' + window.location.host) || {}
+        this.socket = io(window.location.host);
         this.socket.emit('joinRoom', this.state.room)
         this.socket.on('message',message =>{
             if(message){
